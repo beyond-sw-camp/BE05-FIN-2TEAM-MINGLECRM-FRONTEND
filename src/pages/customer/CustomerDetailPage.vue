@@ -1,54 +1,61 @@
 <template>
-  <div>
-    <h1>Customer Details</h1>
-    <div v-if="customer">
-      <p><strong>ID:</strong> {{ customer.id }}</p>
-      <p><strong>Name:</strong> {{ customer.name }}</p>
-<!--      <p><strong>Grade:</strong> {{ customer.grade }}</p>-->
-<!--      <p><strong>Phone:</strong> {{ customer.phone }}</p>-->
-      <p><strong>Address:</strong> {{ customer.address }}</p>
-<!--      <p><strong>Employee ID:</strong> {{ customer.employee_id }}</p>-->
-<!--      <p><strong>Memo:</strong> {{ customer.memo }}</p>-->
-      <p><strong>Gender:</strong> {{ customer.gender }}</p>
-<!--      <p><strong>Birth:</strong> {{ customer.birth }}</p>-->
-    </div>
+  <q-page class="q-pa-xl">
+    <q-tabs v-model="activeTab">
+      <q-tab name="customer" label="고객 요약"></q-tab>
+      <q-tab name="reservation">예약</q-tab>
+      <q-tab name="consultation">상담</q-tab>
+      <q-tab name="payment">결제</q-tab>
+      <q-tab name="voucher">바우처</q-tab>
+      <q-tab name="reward">리워드</q-tab>
+    </q-tabs>
+
+    <q-separator class="q-my-md"/>
+
+    <!-- 로딩 표시 -->
+    <q-spinner v-if="loading"/>
+
+    <!-- 고객 상세 정보 -->
     <div v-else>
-      <p>Customer not found.</p>
+      <div v-if="activeTab === 'customer'">
+        <CustomerList/>
+      </div>
+      <!-- 예약 정보 -->
+      <div v-else-if="activeTab === 'reservation'">
+        <CustomerReservationList />
+      </div>
     </div>
-  </div>
+  </q-page>
 </template>
 
-<script>
-import { ref, onMounted } from 'vue';
-import { useRoute } from 'vue-router';
-import axios from 'axios';
+<script setup>
+import {ref} from "vue";
+import {useRoute} from "vue-router";
+import CustomerList from "pages/customer/CustomerList.vue";
+import CustomerReservationList from "pages/customer/CustomerReservationList.vue";
 
-export default {
-  setup() {
-    const route = useRoute();
-    const customer = ref(null);
+const route = useRoute();
 
-    const fetchCustomer = async (id) => {
-      try {
-        const response = await axios.get(`http://localhost:8080/api/v1/customers/${id}`);
-        customer.value = response.data;
-      } catch (error) {
-        console.error('Error fetching customer:', error);
-      }
-    };
-
-    onMounted(() => {
-      const id = route.params.id;
-      console.log(route.params.id)
-      if (id) {
-        fetchCustomer(id);
-      }
-    });
+const loading = ref(true);
+const activeTab = ref('customer'); // 초기 탭 설정
 
 
-    return {
-      customer,
-    };
-  },
-};
+// const fetchReservations = async () => {
+//   try {
+//     loading.value = true; // 로딩 상태 설정
+//     const response = await axios.get(`http://localhost:8080/api/v1/customers/${customerId}/hotel/reservations`);
+//     reservations.value = response.data; // 가져온 예약 정보를 저장
+//   } catch (error) {
+//     console.error("예약 정보를 가져오는 데 실패했습니다:", error);
+//   } finally {
+//     loading.value = false; // 로딩 상태 해제
+//   }
+// };
+//       onMounted(fetchReservations)   ;
 </script>
+
+<style scoped>
+.q-page {
+  max-width: 1000px;
+  margin: auto;
+}
+</style>
