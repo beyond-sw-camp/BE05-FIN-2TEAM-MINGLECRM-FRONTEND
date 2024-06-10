@@ -1,3 +1,5 @@
+import CustomerDetailPage from "pages/customer/CustomerDetailPage.vue";
+
 const routes = [
   {
     path: "/",
@@ -20,7 +22,12 @@ const routes = [
       { path: "customers/:customerId/hotel/reservations/:reservationId", component: () => import("pages/reservation/ReservationPage.vue") },
       { path: "", component: () => import("pages/IndexPage.vue") },
       { path: "customer", component: () => import("pages/customer/CustomerPage.vue") },
-      { path: "customer-detail/:id", component: () => import("pages/customer/CustomerDetailPage.vue") },
+      {
+        path: '/customers/:customerId',
+        name: 'CustomerDetailPage',
+        component: CustomerDetailPage,
+        props: true,
+      },
     ],
   },
   {
