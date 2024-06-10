@@ -76,7 +76,7 @@ const columns = [
   {
     name: 'name',
     required: true,
-    label: 'Name',
+    label: '고객명',
     align: 'left',
     field: row => row.name,
     format: val => `${val}`,
@@ -85,16 +85,16 @@ const columns = [
   {
     name: 'grade',
     align: 'center',
-    label: 'Grade',
+    label: '등급',
     field: 'grade',
     sortable: true,
   },
-  { name: 'phone', label: 'Phone', field: 'phone', sortable: true },
-  { name: 'address', label: 'Address', field: 'address' },
-  { name: 'employee_id', label: 'Employee ID', field: 'employee_id' },
-  { name: 'memo', label: 'Memo', field: 'memo' },
-  { name: 'gender', label: 'Gender', field: 'gender' },
-  { name: 'birth', label: 'Birth', field: 'birth' },
+  { name: 'phone', label: '전화번호', field: 'phone', sortable: true },
+  { name: 'address', label: '주소', field: 'address' },
+  { name: 'employee_name', label: '담당자', field: 'employee_name' },
+  { name: 'memo', label: '메모', field: 'memo' },
+  { name: 'gender', label: '성별', field: 'gender' },
+  { name: 'birth', label: '생일', field: 'birth' },
 ];
 
 export default {
@@ -103,7 +103,7 @@ export default {
     const search = ref('');
     const rows = ref([]);
     const pagination = ref({
-      rowsPerPage: 1000,
+      rowsPerPage: 10,
     });
 
     const fetchCustomers = async () => {
