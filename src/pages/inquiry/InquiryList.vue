@@ -31,6 +31,7 @@
 import { ref, computed, onMounted, watch } from "vue";
 import axios from "axios";
 import { useRouter } from "vue-router";
+import { api } from "src/boot/axios";
 
 const inquiries = ref([]); // 데이터를 저장하는 반응형 변수
 const loading = ref(false); // 데이터 로딩 상태를 나타냄
@@ -116,7 +117,7 @@ const router = useRouter();
 const fetchInquiries = async () => {
   loading.value = true; // 데이터 요청할 때 로딩 상태 true로 설정
   try {
-    const response = await axios.get("http://localhost:8080/api/v1/inquiries", {
+    const response = await api.get("/api/v1/inquiries", {
       params: {
         page: pagination.value.page - 1, // 백엔드 페이지 번호가 0부터 시작
         size: pagination.value.rowsPerPage,
