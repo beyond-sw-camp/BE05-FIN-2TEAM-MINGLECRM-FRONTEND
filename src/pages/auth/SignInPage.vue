@@ -57,6 +57,7 @@ import { ref } from "vue";
 import axios from "axios";
 import { useRouter } from "vue-router";
 import { useTokenStore } from "stores/token-store";
+import { api } from "src/boot/axios";
 
 const store = useTokenStore();
 const email = ref("");
@@ -66,7 +67,7 @@ const router = useRouter();
 const signIn = async () => {
   try {
     const response = await axios.post(
-      "http://localhost:8080/api/v1/auth/signintest",
+      "http://15.165.109.152:8080/api/v1/auth/signintest",
       {
         email: email.value,
         password: password.value,

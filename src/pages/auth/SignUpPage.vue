@@ -70,6 +70,7 @@
 import { ref } from "vue";
 import axios from "axios";
 import { useRoute } from "vue-router";
+import { api } from "src/boot/axios";
 
 const email = ref("");
 const password = ref("");
@@ -105,7 +106,7 @@ const signUp = async () => {
     console.log(request.value);
 
     const response = await axios.post(
-      "http://localhost:8080/api/v1/auth/signup",
+      "http://15.165.109.152:8080/api/v1/auth/signup",
       request.value
     );
 
