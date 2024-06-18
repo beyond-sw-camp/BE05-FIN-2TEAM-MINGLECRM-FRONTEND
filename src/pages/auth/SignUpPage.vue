@@ -105,7 +105,10 @@ const signUp = async () => {
     request.value.authority = authority.value;
     console.log(request.value);
 
-    const response = await api.post("/api/v1/auth/signup", request.value);
+    const response = await axios.post(
+      "http://15.165.109.152:8080/api/v1/auth/signup",
+      request.value
+    );
 
     console.log(response.data);
     router("/");
