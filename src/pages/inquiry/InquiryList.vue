@@ -1,5 +1,6 @@
 <template>
   <div>
+    <div class="text-h4">배포 테스트</div>
     <div class="text-h4">전체 문의 목록</div>
     <q-input filled v-model="filter" label="Search" class="q-mb-md" />
     <!-- 검색 입력 필드 생성
