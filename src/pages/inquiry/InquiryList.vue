@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="text-h4">전체 문의 목록</div>
+    <div class="text-h4">전체 문의 목록 11</div>
     <q-input filled v-model="filter" label="Search" class="q-mb-md" />
     <!-- 검색 입력 필드 생성
       v-model을 통해 filter 변수와 양방향 바인딩
