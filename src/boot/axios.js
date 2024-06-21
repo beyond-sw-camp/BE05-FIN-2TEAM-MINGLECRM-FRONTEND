@@ -4,7 +4,7 @@ import { useTokenStore } from "src/stores/token-store";
 
 // Create an axios instance
 const api = axios.create({
-  baseURL: process.env.VUE_APP_API_BASE_URL,
+  baseURL: "http://15.165.109.152:8080",
   headers: {
     "Content-Type": "application/json",
   },
