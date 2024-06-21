@@ -116,15 +116,12 @@ const router = useRouter();
 const fetchInquiries = async () => {
   loading.value = true; // 데이터 요청할 때 로딩 상태 true로 설정
   try {
-    const response = await axios.get(
-      "http://15.165.109.152:8080/api/v1/inquiries",
-      {
-        params: {
-          page: pagination.value.page - 1, // 백엔드 페이지 번호가 0부터 시작
-          size: pagination.value.rowsPerPage,
-        },
-      }
-    );
+    const response = await api.get("/api/v1/inquiries", {
+      params: {
+        page: pagination.value.page - 1, // 백엔드 페이지 번호가 0부터 시작
+        size: pagination.value.rowsPerPage,
+      },
+    });
 
     const { content, totalElements, totalPages } = response.data.data;
     console.log("응답 데이터:", response.data.data);

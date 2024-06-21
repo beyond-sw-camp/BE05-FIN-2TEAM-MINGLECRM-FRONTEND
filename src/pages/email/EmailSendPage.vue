@@ -58,14 +58,11 @@ const GroupOptions = ref(["전체", "VIP", "신규 회원", "MINGLE 팀원"]);
 
 const sendPersonalEmail = async () => {
   try {
-    const response = await axios.post(
-      "http://localhost:8080/api/email/personal",
-      {
-        toEmail: toEmails.value,
-        title: title.value,
-        content: content.value,
-      }
-    );
+    const response = await api.post("/api/email/personal", {
+      toEmail: toEmails.value,
+      title: title.value,
+      content: content.value,
+    });
 
     window.alert("이메일이 발송되었습니다!");
     content.value = "";

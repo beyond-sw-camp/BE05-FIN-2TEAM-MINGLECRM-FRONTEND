@@ -68,7 +68,7 @@ const columns = ref([
 
 const fetchRewards = async () => {
   try {
-    const response = await axios.get("http://localhost:8080/api/v1/rewards");
+    const response = await api.get("/api/v1/rewards");
     rewards.value = response.data.data;
     errorMessage.value = "";
   } catch (error) {

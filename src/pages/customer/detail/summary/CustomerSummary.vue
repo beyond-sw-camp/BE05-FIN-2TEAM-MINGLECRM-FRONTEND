@@ -58,20 +58,20 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
-import { useRoute } from 'vue-router';
+import { ref, onMounted } from "vue";
+import { useRoute } from "vue-router";
 import { api as axios } from "src/boot/axios";
 
 const route = useRoute();
-const customerId = route.params.id;  // URL 파라미터에서 ID를 가져옴
+const customerId = route.params.id; // URL 파라미터에서 ID를 가져옴
 const customer = ref(null);
 
 const fetchCustomerDetail = async () => {
   try {
-    const response = await axios.get(`http://localhost:8080/api/v1/customers/${customerId}`);
+    const response = await api.get(`/api/v1/customers/${customerId}`);
     customer.value = response.data;
   } catch (error) {
-    console.error('고객 상세 정보를 불러오는 데 실패했습니다:', error);
+    console.error("고객 상세 정보를 불러오는 데 실패했습니다:", error);
   }
 };
 

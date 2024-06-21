@@ -132,9 +132,7 @@ const toDate = (beforeDate) => {
 
 const fetchVouchers = async () => {
   try {
-    const response = await axios.get(
-      "http://localhost:8080/api/v1/vouchers/requested"
-    );
+    const response = await api.get("/api/v1/vouchers/requested");
     vouchers.value = response.data.data;
     console.log(vouchers.value);
     errorMessage.value = "";
@@ -155,9 +153,7 @@ const approveVoucher = async (voucherId) => {
     cancel: "아니오",
   }).onOk(async () => {
     try {
-      await axios.post(
-        `http://localhost:8080/api/v1/vouchers/approval/${voucherId}`
-      );
+      await api.post(`/api/v1/vouchers/approval/${voucherId}`);
       Notify.create({
         type: "positive",
         message: "바우처가 성공적으로 승인되었습니다.",
@@ -186,10 +182,7 @@ const rejectVoucher = async (voucherId) => {
     cancel: "취소",
   }).onOk(async (reason) => {
     try {
-      await axios.post(
-        `http://localhost:8080/api/v1/vouchers/rejection/${voucherId}`,
-        { reason }
-      );
+      await api.post(`/api/v1/vouchers/rejection/${voucherId}`, { reason });
       Notify.create({
         type: "positive",
         message: "바우처가 성공적으로 거절되었습니다.",

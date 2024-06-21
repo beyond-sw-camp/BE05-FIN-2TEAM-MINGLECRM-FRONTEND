@@ -116,15 +116,12 @@ const fetchInquiries = async () => {
   loading.value = true;
   error.value = null;
   try {
-    const response = await axios.get(
-      "http://localhost:8080/api/v1/inquiries/unanswered",
-      {
-        params: {
-          page: pagination.value.page - 1,
-          size: pagination.value.rowsPerPage,
-        },
-      }
-    );
+    const response = await api.get("/api/v1/inquiries/unanswered", {
+      params: {
+        page: pagination.value.page - 1,
+        size: pagination.value.rowsPerPage,
+      },
+    });
     inquiries.value = response.data.data.content.map((item) => ({
       id: item.id,
       customerName: item.customerName,

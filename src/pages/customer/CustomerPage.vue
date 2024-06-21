@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import CustomerList from './CustomerList.vue';
+import CustomerList from "./CustomerList.vue";
 import { ref, computed, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import { api as axios } from "src/boot/axios";
@@ -55,9 +55,7 @@ export default {
 
     const fetchCustomers = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost:8080/api/v1/customers"
-        );
+        const response = await api.get("/api/v1/customers");
         console.log(response.data); // 데이터를 콘솔에 출력하여 확인합니다.
         rows.value = response.data.map((customer) => ({
           id: customer.id,

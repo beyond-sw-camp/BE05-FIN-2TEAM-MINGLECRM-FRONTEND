@@ -31,7 +31,7 @@
 
 <script setup>
 import { ref, onMounted, watch, defineProps, defineEmits } from "vue";
-import axios from "axios";
+import { api as axios } from "src/boot/axios";
 
 const props = defineProps({
   customerName: {
@@ -96,9 +96,7 @@ const columns = ref([
 
 const fetchRewardHistories = async (customerId) => {
   try {
-    const response = await axios.get(
-      `http://localhost:8080/api/v1/rewards/history/${customerId}`
-    );
+    const response = await api.get(`/api/v1/rewards/history/${customerId}`);
     console.log(customerId);
     console.log(response);
     rewardHistories.value = response.data.data;

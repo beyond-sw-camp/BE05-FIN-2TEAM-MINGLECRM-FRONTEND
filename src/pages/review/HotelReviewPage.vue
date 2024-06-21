@@ -288,8 +288,8 @@ const getHotelReviews = async () => {
 
     console.log(searchCondition.value);
 
-    const response = await axios.post(
-      `http://localhost:8080/api/hotel/reviews/${pagination.value.page - 1}`,
+    const response = await api.post(
+      `/api/hotel/reviews/${pagination.value.page - 1}`,
       searchCondition.value,
       { withCredentials: true }
     );
@@ -301,33 +301,25 @@ const getHotelReviews = async () => {
 };
 
 const getHotelPositiveReviewSummary = async () => {
-  const response = await axios.get(
-    "http://localhost:8080/api/hotel/review/summary",
-    {
-      params: {
-        summaryType: "POSITIVE",
-      },
-    }
-  );
+  const response = await api.get("/api/hotel/review/summary", {
+    params: {
+      summaryType: "POSITIVE",
+    },
+  });
   positiveReviewSummary.value = response.data.data.summary;
 };
 
 const getHotelNegativeReviewSummary = async () => {
-  const response = await axios.get(
-    "http://localhost:8080/api/hotel/review/summary",
-    {
-      params: {
-        summaryType: "NEGATIVE",
-      },
-    }
-  );
+  const response = await api.get("/api/hotel/review/summary", {
+    params: {
+      summaryType: "NEGATIVE",
+    },
+  });
   negativeReviewSummary.value = response.data.data.summary;
 };
 
 const getHotelReviewMetaData = async () => {
-  const response = await axios.get(
-    "http://localhost:8080/api/hotel/review/meta"
-  );
+  const response = await api.get("/api/hotel/review/meta");
 
   pagination.value.pagesNumber = response.data.data.pagesNumber;
 };

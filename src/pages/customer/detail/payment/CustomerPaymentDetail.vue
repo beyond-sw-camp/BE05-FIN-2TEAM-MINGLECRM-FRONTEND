@@ -9,50 +9,50 @@
     <q-card-section v-if="paymentDetail">
       <table class="payment-table">
         <tbody>
-        <tr>
-          <th>고객명</th>
-          <td>{{ paymentDetail.customerName }}</td>
-        </tr>
-        <tr>
-          <th>전화번호</th>
-          <td>{{ paymentDetail.number }}</td>
-        </tr>
-        <tr>
-          <th>결제 종류</th>
-          <td>{{ paymentDetail.type }}</td>
-        </tr>
-        <tr>
-          <th>할인 전 금액</th>
-          <td>{{ paymentDetail.amountBeforeDiscount }}</td>
-        </tr>
-        <tr>
-          <th>할인 금액</th>
-          <td>{{ paymentDetail.discountAmount }}</td>
-        </tr>
-        <tr>
-          <th>결제 금액</th>
-          <td>{{ paymentDetail.paymentAmount }}</td>
-        </tr>
-        <tr>
-          <th>결제 날짜</th>
-          <td>{{ paymentDetail.paymentDate }}</td>
-        </tr>
-        <tr>
-          <th>환불 여부</th>
-          <td>{{ paymentDetail.isRefunded }}</td>
-        </tr>
-        <tr>
-          <th>환불 날짜</th>
-          <td>{{ paymentDetail.refundDate }}</td>
-        </tr>
-        <tr>
-          <th>리워드 생성 금액</th>
-          <td>{{ paymentDetail.createdReward }}</td>
-        </tr>
-        <tr>
-          <th>결제 지점</th>
-          <td>{{ paymentDetail.paymentSpot }}</td>
-        </tr>
+          <tr>
+            <th>고객명</th>
+            <td>{{ paymentDetail.customerName }}</td>
+          </tr>
+          <tr>
+            <th>전화번호</th>
+            <td>{{ paymentDetail.number }}</td>
+          </tr>
+          <tr>
+            <th>결제 종류</th>
+            <td>{{ paymentDetail.type }}</td>
+          </tr>
+          <tr>
+            <th>할인 전 금액</th>
+            <td>{{ paymentDetail.amountBeforeDiscount }}</td>
+          </tr>
+          <tr>
+            <th>할인 금액</th>
+            <td>{{ paymentDetail.discountAmount }}</td>
+          </tr>
+          <tr>
+            <th>결제 금액</th>
+            <td>{{ paymentDetail.paymentAmount }}</td>
+          </tr>
+          <tr>
+            <th>결제 날짜</th>
+            <td>{{ paymentDetail.paymentDate }}</td>
+          </tr>
+          <tr>
+            <th>환불 여부</th>
+            <td>{{ paymentDetail.isRefunded }}</td>
+          </tr>
+          <tr>
+            <th>환불 날짜</th>
+            <td>{{ paymentDetail.refundDate }}</td>
+          </tr>
+          <tr>
+            <th>리워드 생성 금액</th>
+            <td>{{ paymentDetail.createdReward }}</td>
+          </tr>
+          <tr>
+            <th>결제 지점</th>
+            <td>{{ paymentDetail.paymentSpot }}</td>
+          </tr>
         </tbody>
       </table>
     </q-card-section>
@@ -64,12 +64,12 @@
 </template>
 
 <script setup>
-import { ref, onMounted, defineProps, defineEmits } from 'vue';
+import { ref, onMounted, defineProps, defineEmits } from "vue";
 import { api as axios } from "src/boot/axios";
-import { useRoute } from 'vue-router';
+import { useRoute } from "vue-router";
 
-const props = defineProps(['payment']);
-const emit = defineEmits(['close']);
+const props = defineProps(["payment"]);
+const emit = defineEmits(["close"]);
 const paymentDetail = ref(null);
 const route = useRoute();
 
@@ -82,10 +82,12 @@ onMounted(async () => {
 
 const fetchPayment = async (customerId, paymentId) => {
   try {
-    const response = await axios.get(`http://localhost:8080/api/v1/customers/${customerId}/payments/${paymentId}`);
+    const response = await api.get(
+      `/api/v1/customers/${customerId}/payments/${paymentId}`
+    );
     paymentDetail.value = response.data;
   } catch (error) {
-    console.error('결제 정보를 가져오는 중 에러 발생:', error);
+    console.error("결제 정보를 가져오는 중 에러 발생:", error);
   }
 };
 </script>

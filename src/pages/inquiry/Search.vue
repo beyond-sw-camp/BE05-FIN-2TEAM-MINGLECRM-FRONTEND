@@ -95,20 +95,17 @@ const toggleDatePicker = () => {
 
 const applyFilters = async () => {
   try {
-    const response = await axios.get(
-      "http://localhost:8080/api/v1/inquiries/search",
-      {
-        params: {
-          ...filters.value,
-          startDate: filters.value.startDate
-            ? filters.value.startDate.format("YYYY-MM-DD")
-            : null,
-          endDate: filters.value.endDate
-            ? filters.value.endDate.format("YYYY-MM-DD")
-            : null,
-        },
-      }
-    );
+    const response = await api.get("/api/v1/inquiries/search", {
+      params: {
+        ...filters.value,
+        startDate: filters.value.startDate
+          ? filters.value.startDate.format("YYYY-MM-DD")
+          : null,
+        endDate: filters.value.endDate
+          ? filters.value.endDate.format("YYYY-MM-DD")
+          : null,
+      },
+    });
     emit("update:filters", { ...filters.value, data: response.data.data });
   } catch (error) {
     console.error("Error fetching inquiries:", error);

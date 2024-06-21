@@ -43,8 +43,8 @@ const submitEdit = async () => {
   if (!updatedReply.value.content) return;
   loading.value = true;
   try {
-    const response = await axios.post(
-      `http://localhost:8080/api/v1/inquiries/reply/${props.inquiryReplyId}`,
+    const response = await api.post(
+      `/api/v1/inquiries/reply/${props.inquiryReplyId}`,
       { updatedReply: updatedReply.value.content },
       {
         headers: {

@@ -250,8 +250,8 @@ const getDiningReviews = async () => {
 
     console.log(searchCondition.value);
 
-    const response = await axios.post(
-      `http://localhost:8080/api/dining/reviews/${pagination.value.page - 1}`,
+    const response = await api.post(
+      `/api/dining/reviews/${pagination.value.page - 1}`,
       searchCondition.value
     );
     reviews.value = response.data.data;
@@ -261,33 +261,25 @@ const getDiningReviews = async () => {
 };
 
 const getDiningPositiveReviewSummary = async () => {
-  const response = await axios.get(
-    "http://localhost:8080/api/dining/review/summary",
-    {
-      params: {
-        summaryType: "POSITIVE",
-      },
-    }
-  );
+  const response = await api.get("/api/dining/review/summary", {
+    params: {
+      summaryType: "POSITIVE",
+    },
+  });
   positiveReviewSummary.value = response.data.data.summary;
 };
 
 const getDiningNegativeReviewSummary = async () => {
-  const response = await axios.get(
-    "http://localhost:8080/api/dining/review/summary",
-    {
-      params: {
-        summaryType: "NEGATIVE",
-      },
-    }
-  );
+  const response = await api.get("/api/dining/review/summary", {
+    params: {
+      summaryType: "NEGATIVE",
+    },
+  });
   negativeReviewSummary.value = response.data.data.summary;
 };
 
 const getDiningReviewMetaData = async () => {
-  const response = await axios.get(
-    "http://localhost:8080/api/dining/review/meta"
-  );
+  const response = await api.get("/api/dining/review/meta");
 
   pagination.value.pagesNumber = response.data.data.pagesNumber;
 };

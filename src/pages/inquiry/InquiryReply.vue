@@ -40,8 +40,8 @@ const submitReply = async () => {
   loading.value = true;
   try {
     // 토큰이 필요 없는 경우 헤더를 생략
-    const response = await axios.post(
-      `http://localhost:8080/api/v1/inquiries/reply`,
+    const response = await api.post(
+      `/api/v1/inquiries/reply`,
       {
         inquiryId: props.inquiryId,
         reply: reply.value.content,

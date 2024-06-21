@@ -54,20 +54,15 @@
 </template>
 
 <script setup>
-
-import { ref, watch, onMounted } from 'vue';
+import { ref, watch, onMounted } from "vue";
 import { api as axios } from "src/boot/axios";
-
-
 
 const props = defineProps(["voucher"]);
 const voucherDetails = ref({});
 
 const fetchVoucherDetail = async (customerId, voucherId) => {
   try {
-    const response = await axios.get(
-      `http://localhost:8080/api/v1/vouchers/histories/${voucherId}`
-    );
+    const response = await api.get(`/api/v1/vouchers/histories/${voucherId}`);
     voucherDetails.value = response.data.data;
   } catch (error) {
     console.error("Error fetching voucher detail:", error);

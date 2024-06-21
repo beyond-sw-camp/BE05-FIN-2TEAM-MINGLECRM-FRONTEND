@@ -239,9 +239,7 @@ const columns = ref([
 
 const fetchVouchers = async () => {
   try {
-    const response = await axios.get(
-      "http://localhost:8080/api/v1/vouchers/before-requested"
-    );
+    const response = await api.get("/api/v1/vouchers/before-requested");
     vouchers.value = response.data.data;
     errorMessage.value = "";
   } catch (error) {
@@ -254,7 +252,7 @@ const fetchVouchers = async () => {
 
 const createVoucher = async () => {
   try {
-    const response = await axios.post("http://localhost:8080/api/v1/vouchers", {
+    const response = await api.post("/api/v1/vouchers", {
       customerId: voucher.value.customerId,
       amount: voucher.value.amount,
       reason: voucher.value.reason,
@@ -278,9 +276,7 @@ const requestVoucher = async (voucherId) => {
     cancel: "아니오",
   }).onOk(async () => {
     try {
-      await axios.post(
-        `http://localhost:8080/api/v1/vouchers/request/${voucherId}`
-      );
+      await api.post(`/api/v1/vouchers/request/${voucherId}`);
       Notify.create({
         type: "positive",
         message: "바우처가 성공적으로 승인되었습니다.",
@@ -305,7 +301,7 @@ const deleteVoucher = async (voucherId) => {
     cancel: "아니오",
   }).onOk(async () => {
     try {
-      await axios.delete(`http://localhost:8080/api/v1/vouchers/${voucherId}`);
+      await api.delete(`/api/v1/vouchers/${voucherId}`);
       Notify.create({
         type: "positive",
         message: "바우처가 성공적으로 삭제되었습니다.",

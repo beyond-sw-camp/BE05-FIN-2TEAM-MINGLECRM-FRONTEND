@@ -88,6 +88,7 @@ import { storeToRefs } from "pinia";
 import axios from "axios";
 import { api as customAxios } from "/src/boot/axios";
 import { useUserStore } from "src/stores/user-store";
+import { api } from "src/boot/axios";
 
 const store = useTokenStore();
 const { atk } = storeToRefs(store);
@@ -149,12 +150,9 @@ const linksList = [
 const logout = async () => {
   try {
     console.log("로그아웃");
-    const response = await axios.get(
-      "http://15.165.109.152:8080/api/v1/auth/logout",
-      {
-        withCredentials: true,
-      }
-    );
+    const response = await api.get("/api/v1/auth/logout", {
+      withCredentials: true,
+    });
     console.log(response.status);
     store.setAtk("");
   } catch (error) {
@@ -164,12 +162,9 @@ const logout = async () => {
 
 const renewToken = async () => {
   try {
-    const response = await axios.get(
-      "http://15.165.109.152:8080/api/v1/auth/renew",
-      {
-        withCredentials: true,
-      }
-    );
+    const response = await api.get("/api/v1/auth/renew", {
+      withCredentials: true,
+    });
     console.log(response.data);
     console.log("renewToken 실행 완료");
     if (response.data.code === 200) {
