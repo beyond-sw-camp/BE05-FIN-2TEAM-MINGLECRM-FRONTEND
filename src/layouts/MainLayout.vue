@@ -67,7 +67,7 @@
     <q-drawer show-if-above v-model="leftDrawerOpen" side="left" bordered>
       <q-list>
         <EssentialLink
-          v-for="link in linksList"
+          v-for="link in filteredLinks"
           :key="link.title"
           v-bind="link"
         />
@@ -86,6 +86,7 @@ import EssentialLink from "components/EssentialLink.vue";
 import { useTokenStore } from "src/stores/token-store";
 import { storeToRefs } from "pinia";
 import axios from "axios";
+import { api as customAxios } from "/src/boot/axios";
 import { useUserStore } from "src/stores/user-store";
 
 const store = useTokenStore();
@@ -106,16 +107,18 @@ const linksList = [
     to: "/review",
   },
   {
-    title: "바우처-매니저",
+    title: "바우처",
     caption: "바우처 탭",
     icon: "school",
     to: "/voucher-manager",
+    roles: ["ROLE_MANAGER"],
   },
   {
-    title: "바우처-마케터",
+    title: "바우처",
     caption: "바우처 탭",
     icon: "school",
     to: "/voucher-marketer",
+    roles: ["ROLE_MARKETER"],
   },
   {
     title: "리워드",
@@ -135,6 +138,12 @@ const linksList = [
     icon: "email",
     to: "/email",
   },
+  {
+    title: "통계",
+    caption: "통계 탭",
+    icon: "map",
+    to: "/statistics",
+  },
 ];
 
 const logout = async () => {
@@ -148,7 +157,6 @@ const logout = async () => {
     );
     console.log(response.status);
     store.setAtk("");
-    // atkExpiration 변수는 사용하지 않는 것으로 보이므로 삭제하거나 적절히 수정해야 합니다.
   } catch (error) {
     console.log(error);
   }
@@ -184,12 +192,25 @@ function toggleLeftDrawer() {
   leftDrawerOpen.value = !leftDrawerOpen.value;
 }
 
-// userEmail computed 속성 정의
-const userName = computed(() => {
-  return userStore.name;
+const userName = computed(() => userStore.name);
+const userRole = computed(() => userStore.role);
+
+const filteredLinks = computed(() => {
+  if (!atk.value) {
+    return linksList.filter((link) => !link.roles);
+  } else if (userRole.value === "ROLE_MANAGER") {
+    return linksList.filter((link) =>
+      link.roles ? link.roles.includes("ROLE_MANAGER") : true
+    );
+  } else if (userRole.value === "ROLE_MARKETER") {
+    return linksList.filter((link) =>
+      link.roles ? link.roles.includes("ROLE_MARKETER") : true
+    );
+  } else {
+    return linksList;
+  }
 });
 
-// onMounted 훅 사용
 onMounted(async () => {
   await renewToken();
   userStore.loadUserInfo();

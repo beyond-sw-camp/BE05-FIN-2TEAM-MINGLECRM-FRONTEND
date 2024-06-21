@@ -111,7 +111,7 @@ const signUp = async () => {
     );
 
     console.log(response.data);
-    router("/");
+    window.location.href = "/#/";
   } catch (error) {
     console.log(error);
   }

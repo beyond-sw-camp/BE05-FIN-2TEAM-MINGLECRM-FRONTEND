@@ -38,7 +38,7 @@
 
 <script setup>
 import { ref, computed, onMounted } from 'vue';
-import axios from 'axios';
+import { api as axios } from "src/boot/axios";
 import { useRoute } from 'vue-router';
 import DiningReservationDetail from './DiningReservationDetail.vue';
 import SearchInput from 'src/components/SearchInput.vue';
@@ -64,7 +64,7 @@ const fetchReservations = async () => {
   try {
     const response = await axios.get(`http://localhost:8080/api/v1/customers/${customerId}/dish/reservations`);
     reservations.value = response.data.map((reservation) => ({
-      reservationId: reservation.reservationId,
+      reservationId: reservation.id,
       reservationDate: new Date(reservation.reservationDate).toLocaleDateString(),
       visitDate: new Date(reservation.visitDate).toLocaleDateString(),
       totalPrice: reservation.totalPrice,

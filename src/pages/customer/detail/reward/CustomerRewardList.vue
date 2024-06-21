@@ -5,25 +5,22 @@
     <!-- 리워드 정보 표시 -->
     <q-card class="q-mt-md">
       <q-card-section class="q-pa-md">
-        <q-list>
-          <q-item>
-            <q-item-section>Customer ID</q-item-section>
-            <q-item-section>{{ rewardInfo.customerId }}</q-item-section>
-          </q-item>
-          <q-item>
-            <q-item-section>Amount</q-item-section>
-            <q-item-section>{{ rewardInfo.amount }}</q-item-section>
-          </q-item>
-        </q-list>
+        <q-table
+          :rows="[rewardInfo]"
+          :columns="columns"
+          row-key="customerId"
+          flat
+          bordered
+        />
       </q-card-section>
     </q-card>
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
-import axios from 'axios';
-import { useRoute } from 'vue-router';
+import {ref, onMounted} from 'vue';
+import {api as axios} from 'src/boot/axios';
+import {useRoute} from 'vue-router';
 
 const route = useRoute();
 const customerId = route.params.id;
@@ -31,6 +28,21 @@ const rewardInfo = ref({
   customerId: null,
   amount: null
 });
+
+const columns = [
+  {
+    name: 'customerId',
+    label: '고객 ID',
+    align: 'left',
+    field: row => row.customerId
+  },
+  {
+    name: 'amount',
+    label: '리워드 총 금액',
+    align: 'left',
+    field: row => formatAmount(row.amount) // Use formatAmount function here
+  }
+];
 
 const fetchRewardInfo = async () => {
   try {
@@ -42,11 +54,29 @@ const fetchRewardInfo = async () => {
   }
 };
 
+// Function to format amount with thousand separators
+function formatAmount(amount) {
+  if (typeof amount !== 'number') {
+    return amount;
+  }
+  return amount.toLocaleString('en-US'); // Example: Formats with comma separators (,)
+}
+
 onMounted(() => {
   fetchRewardInfo();
 });
 </script>
 
 <style scoped>
-/* 필요한 스타일을 추가할 수 있습니다. */
+.q-mt-md {
+  margin-top: 16px;
+}
+
+.q-pa-md {
+  padding: 16px;
+}
+
+.q-my-md {
+  margin: 16px 0;
+}
 </style>

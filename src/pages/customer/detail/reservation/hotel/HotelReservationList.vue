@@ -39,7 +39,7 @@
 
 <script setup>
 import { ref, computed, onMounted } from 'vue';
-import axios from 'axios';
+import { api as axios } from "src/boot/axios";
 import { useRoute } from 'vue-router';
 import HotelReservationDetail from './HotelReservationDetail.vue';
 import SearchInput from 'src/components/SearchInput.vue'; // SearchInput 컴포넌트 임포트
@@ -127,8 +127,7 @@ const hotelReservationColumns = [
   { name: 'name', label: '고객명', align: 'center', field: 'name' },
   { name: 'phoneNumber', label: '전화번호', align: 'center', field: 'phoneNumber' },
   { name: 'hotelName', label: '호텔명', align: 'center', field: 'hotelName' },
-  { name: 'reservationType', label: '방 유형', align: 'center', field: 'reservationType' },
-  { name: 'memo', label: '메모', align: 'center', field: 'memo' }
+  { name: 'reservationType', label: '방 유형', align: 'center', field: 'reservationType' }
 ];
 </script>
 
