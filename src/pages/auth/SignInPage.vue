@@ -57,7 +57,6 @@ import { ref } from "vue";
 import axios from "axios";
 import { useRouter } from "vue-router";
 import { useTokenStore } from "stores/token-store";
-import { api } from "src/boot/axios";
 
 const store = useTokenStore();
 const email = ref("");

@@ -72,7 +72,7 @@
 
 <script setup>
 import { ref } from "vue";
-import axios from "axios";
+import { api } from "src/boot/axios";
 import { defineEmits } from "vue";
 
 const emit = defineEmits(["update:filters"]);

@@ -49,7 +49,7 @@
 
 <script setup>
 import { ref, computed, onMounted } from "vue";
-import { api as axios } from "src/boot/axios";
+import axios from "axios";
 import { useRoute } from "vue-router";
 import Fuse from "fuse.js";
 import CustomerPaymentDetail from "./CustomerPaymentDetail.vue";
@@ -73,7 +73,9 @@ let fuse; // fuse.js 인스턴스
 
 const fetchPayments = async () => {
   try {
-    const response = await api.get(`/api/v1/customers/${customerId}/payments`);
+    const response = await axios.get(
+      `/api/v1/customers/${customerId}/payments`
+    );
     payments.value = response.data.map((payment, index) => ({
       paymentId: payment.id,
       customerName: payment.customerName,

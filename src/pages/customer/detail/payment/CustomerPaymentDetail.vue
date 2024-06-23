@@ -65,7 +65,7 @@
 
 <script setup>
 import { ref, onMounted, defineProps, defineEmits } from "vue";
-import { api as axios } from "src/boot/axios";
+import axios from "axios";
 import { useRoute } from "vue-router";
 
 const props = defineProps(["payment"]);
@@ -82,7 +82,7 @@ onMounted(async () => {
 
 const fetchPayment = async (customerId, paymentId) => {
   try {
-    const response = await api.get(
+    const response = await axios.get(
       `/api/v1/customers/${customerId}/payments/${paymentId}`
     );
     paymentDetail.value = response.data;

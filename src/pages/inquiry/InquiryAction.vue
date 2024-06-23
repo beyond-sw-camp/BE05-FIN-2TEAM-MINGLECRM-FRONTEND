@@ -32,7 +32,7 @@
 
 <script setup>
 import { ref } from "vue";
-import { api as axios } from "src/boot/axios";
+import { api } from "src/boot/axios";
 import { defineProps, defineEmits } from "vue";
 
 const props = defineProps({

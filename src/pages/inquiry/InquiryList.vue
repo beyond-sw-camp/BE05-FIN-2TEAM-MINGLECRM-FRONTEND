@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="text-h4">전체 문의 목록 11</div>
+    <div class="text-h4">전체 문의 목록</div>
     <q-input filled v-model="filter" label="Search" class="q-mb-md" />
     <!-- 검색 입력 필드 생성
       v-model을 통해 filter 변수와 양방향 바인딩
@@ -29,7 +29,7 @@
 
 <script setup>
 import { ref, computed, onMounted, watch } from "vue";
-import { api as axios } from "src/boot/axios";
+import { api } from "src/boot/axios";
 import { useRouter } from "vue-router";
 
 const inquiries = ref([]); // 데이터를 저장하는 반응형 변수
