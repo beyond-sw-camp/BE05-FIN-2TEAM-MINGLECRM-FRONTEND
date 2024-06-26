@@ -296,7 +296,8 @@ const fetchInquiries = async () => {
       },
     });
 
-    inquiries.value = response.data.data.content;
+    console.log(response.data.data);
+    // inquiries.value = response.data.data.content;
     pagination.value.page = response.data.data.number + 1;
     pagination.value.rowsPerPage = response.data.data.size;
     pagination.value.rowsNumber = response.data.data.totalElements;
