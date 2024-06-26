@@ -11,21 +11,6 @@ const api = axios.create({
   withCredentials: true,
 });
 
-let isRefreshing = false;
-let failedQueue = [];
-
-const processQueue = (error, token = null) => {
-  failedQueue.forEach((prom) => {
-    if (error) {
-      prom.reject(error);
-    } else {
-      prom.resolve(token);
-    }
-  });
-
-  failedQueue = [];
-};
-
 export default boot(({ app }) => {
   const store = useTokenStore();
 
@@ -34,48 +19,36 @@ export default boot(({ app }) => {
       const atk = store.atk;
       const atkExpiration = store.atkExpiration;
 
+      console.log(" global axios interceptors ");
       if (config.url.includes("/api/v1/auth/renew")) {
         return config;
       }
 
+      // Check if token is expired or not available
       if (!atk || new Date(atkExpiration) <= new Date()) {
-        if (!isRefreshing) {
-          isRefreshing = true;
-
-          try {
-            const response = await api.get("/api/v1/auth/renew", {
-              withCredentials: true,
-            });
-
-            if (response.status === 200) {
-              const { atk, atkExpiration, rtkExpiration } = response.data.data;
-              store.setSigninResponse(atk, atkExpiration, rtkExpiration);
-              processQueue(null, atk);
-              config.headers.Authorization = `Bearer ${atk}`;
-            } else {
-              throw new Error("Token renewal failed");
-            }
-          } catch (error) {
-            processQueue(error, null);
-            window.location.href = "/signin";
-            return Promise.reject(error);
-          } finally {
-            isRefreshing = false;
-          }
-        }
-
-        return new Promise((resolve, reject) => {
-          failedQueue.push({
-            resolve: (token) => {
-              config.headers.Authorization = `Bearer ${token}`;
-              resolve(config);
-            },
-            reject: (error) => {
-              reject(error);
-            },
+        try {
+          console.log("토큰 갱신 요청");
+          const response = await api.get("/api/v1/auth/renew", {
+            withCredentials: true,
           });
-        });
+          console.log("요청 보냄");
+
+          if (response.status === 200) {
+            const { atk, atkExpiration, rtkExpiration } = response.data.data;
+            store.setSigninResponse(atk, atkExpiration, rtkExpiration);
+
+            // Update the config's Authorization header with the new token
+            config.headers.Authorization = `Bearer ${atk}`;
+          } else {
+            throw new Error("Token renewal failed");
+          }
+        } catch (error) {
+          console.log("토큰 갱신 실패 -> 로그아웃 상태");
+          window.location.href = "/signin";
+          return Promise.reject(error);
+        }
       } else {
+        // If token is valid, set it to the request's Authorization header
         config.headers.Authorization = `Bearer ${atk}`;
       }
 
