@@ -64,16 +64,13 @@
 </template>
 
 <script setup>
-
-import { ref, computed, onMounted } from 'vue';
+import { ref, computed, onMounted } from "vue";
 import { api as axios } from "src/boot/axios";
-import { useRoute } from 'vue-router';
-import Fuse from 'fuse.js';
-import CustomerVoucherDetail from './CustomerVoucherDetail.vue';
-import SearchInput from 'src/components/SearchInput.vue'; // SearchInput 컴포넌트 임포트
-import { formatPrice } from 'src/utils/utils.js'; // 유틸리티 함수 불러오기
-
-
+import { useRoute } from "vue-router";
+import Fuse from "fuse.js";
+import CustomerVoucherDetail from "./CustomerVoucherDetail.vue";
+import SearchInput from "src/components/SearchInput.vue"; // SearchInput 컴포넌트 임포트
+import { formatPrice } from "src/utils/utils.js"; // 유틸리티 함수 불러오기
 
 const route = useRoute();
 const customerId = route.params.id;
@@ -93,7 +90,7 @@ let fuse; // fuse.js 인스턴스
 const fetchVouchers = async () => {
   try {
     const response = await axios.get(
-      `http://localhost:8080/api/v1/vouchers/customer/${customerId}`
+      `http://15.165.109.152:8080/api/v1/vouchers/customer/${customerId}`
     );
     vouchers.value = response.data.data.map((voucher) => ({
       voucherId: voucher.voucherId,
