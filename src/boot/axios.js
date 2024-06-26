@@ -25,12 +25,9 @@ export default boot(({ app }) => {
       if (!atk || new Date(atkExpiration) <= new Date()) {
         try {
           console.log("토큰 갱신 요청");
-          const response = await api.get(
-            "http://15.165.109.152:8080/api/v1/auth/renew",
-            {
-              withCredentials: true,
-            }
-          );
+          const response = await api.get("/api/v1/auth/renew", {
+            withCredentials: true,
+          });
           console.log("요청 보냄");
 
           if (response.status === 200) {
