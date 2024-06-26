@@ -192,9 +192,12 @@ const logout = async () => {
 
 const renewToken = async () => {
   try {
-    const response = await customAxios.get("/api/v1/auth/renew", {
-      withCredentials: true,
-    });
+    const response = await axios.get(
+      "http://15.165.109.152:8080/api/v1/auth/renew",
+      {
+        withCredentials: true,
+      }
+    );
     console.log(response.data);
     console.log("renewToken 실행 완료");
     if (response.data.code === 200) {

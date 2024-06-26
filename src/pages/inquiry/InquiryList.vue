@@ -361,24 +361,6 @@ const fetchInquiriesSearch = async () => {
       console.error("응답 데이터에서 필요한 내용이 없습니다.");
       return;
     }
-
-    // const { content, totalElements, totalPages } = response.data.data;
-
-    // inquiries.value = content.map((item) => ({
-    //   id: item.id,
-    //   customerName: item.customerName,
-    //   customerPhone: item.customerPhone,
-    //   date: new Date(item.date).toLocaleString(),
-    //   type: item.type,
-    //   isReply: item.isReply,
-    //   employName: item.employName,
-    //   inquiryTitle: item.inquiryTitle,
-    //   inquiryContent: item.inquiryContent,
-    //   actionStatus: item.actionStatus,
-    // }));
-
-    // pagination.value.rowsNumber = totalElements;
-    // maxPages.value = totalPages;
     inquiries.value = response.data.data.content;
     pagination.value.page = response.data.data.number + 1;
     pagination.value.rowsPerPage = response.data.data.size;
