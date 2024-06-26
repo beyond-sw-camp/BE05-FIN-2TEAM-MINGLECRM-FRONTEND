@@ -5,9 +5,6 @@ import { useTokenStore } from "src/stores/token-store";
 // Create an axios instance
 const api = axios.create({
   baseURL: "http://15.165.109.152:8080",
-  headers: {
-    "Content-Type": "application/json",
-  },
   withCredentials: true,
 });
 
@@ -28,7 +25,7 @@ export default boot(({ app }) => {
       if (!atk || new Date(atkExpiration) <= new Date()) {
         try {
           console.log("토큰 갱신 요청");
-          const response = await axios.get(
+          const response = await api.get(
             "http://15.165.109.152:8080/api/v1/auth/renew",
             {
               withCredentials: true,
