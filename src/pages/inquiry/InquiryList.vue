@@ -288,16 +288,21 @@ const hasSearchCriteria = () => {
 // 데이터 요청 함수
 const fetchInquiries = async () => {
   loading.value = true; // 데이터 요청할 때 로딩 상태 true로 설정
+  console.log("fetchInquires 시작함");
   try {
     const response = await axios.get("/api/v1/inquiries", {
       params: {
         page: pagination.value.page - 1, // 백엔드 페이지 번호가 0부터 시작
         size: pagination.value.rowsPerPage,
       },
+      headers: {
+        Authorization: `Bearer ${useTokenStore().getAtk}`, // store.atk는 토큰 상태를 나타내는 변수
+      },
     });
 
+    console.log(response.data);
     console.log(response.data.data.content);
-    // inquiries.value = response.data.data.content;
+    inquiries.value = response.data.data.content;
     pagination.value.page = response.data.data.number + 1;
     pagination.value.rowsPerPage = response.data.data.size;
     pagination.value.rowsNumber = response.data.data.totalElements;
