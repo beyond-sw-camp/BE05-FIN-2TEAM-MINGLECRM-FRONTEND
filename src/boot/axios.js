@@ -2,13 +2,13 @@ import { boot } from "quasar/wrappers";
 import axios from "axios";
 import { useTokenStore } from "src/stores/token-store";
 
+axios.defaults.withCredentials = true;
+
 // Create an axios instance
 const api = axios.create({
   baseURL: "http://15.165.109.152:8080",
   withCredentials: true,
 });
-
-axios.defaults.withCredentials = true;
 
 export default boot(({ app }) => {
   const store = useTokenStore();
