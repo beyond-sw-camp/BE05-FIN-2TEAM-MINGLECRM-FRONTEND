@@ -8,6 +8,8 @@ const api = axios.create({
   withCredentials: true,
 });
 
+axios.defaults.withCredentials = true;
+
 export default boot(({ app }) => {
   const store = useTokenStore();
 
