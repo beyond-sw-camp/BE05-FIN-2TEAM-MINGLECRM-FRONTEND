@@ -277,7 +277,7 @@ const fetchInquiries = async () => {
   error.value = null;
   try {
     const response = await axios.get(
-      "https://d14sl6ndoksytf.cloudfront.net/api/v1/inquiries/answered",
+      "http://15.165.109.152:8080/api/v1/inquiries/answered",
       {
         params: {
           page: pagination.value.page - 1,

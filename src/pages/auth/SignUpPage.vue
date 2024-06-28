@@ -105,7 +105,7 @@ const signUp = async () => {
     console.log(request.value);
 
     const response = await axios.post(
-      "https://d14sl6ndoksytf.cloudfront.net/api/v1/auth/signup",
+      "http://15.165.109.152:8080/api/v1/auth/signup",
       request.value
     );
 

@@ -209,7 +209,7 @@ const logout = async () => {
   try {
     console.log("로그아웃");
     const response = await customAxios.get(
-      "https://d14sl6ndoksytf.cloudfront.net/api/v1/auth/logout",
+      "http://15.165.109.152:8080/api/v1/auth/logout",
       {
         withCredentials: true,
       }
@@ -224,7 +224,7 @@ const logout = async () => {
 const renewToken = async () => {
   try {
     const response = await axios.get(
-      "https://d14sl6ndoksytf.cloudfront.net/api/v1/auth/renew",
+      "http://15.165.109.152:8080/api/v1/auth/renew",
       {
         withCredentials: true,
       }

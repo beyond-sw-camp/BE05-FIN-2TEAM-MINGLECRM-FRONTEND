@@ -125,7 +125,7 @@ const customerId = ref(route.params.customerId);
 const fetchData = async () => {
   try {
     const response = await axios.get(
-      `https://d14sl6ndoksytf.cloudfront.net/api/v1/customers/${customerId.value}/hotel/reservations`
+      `http://15.165.109.152:8080/api/v1/customers/${customerId.value}/hotel/reservations`
     );
     console.log("Fetched reservation list:", response.data); // 디버깅 로그
     rows.value = response.data.map((row, index) => ({
@@ -170,7 +170,7 @@ const openReservationDetail = async (row) => {
       return;
     }
     const response = await axios.get(
-      `https://d14sl6ndoksytf.cloudfront.net/api/v1/customers/${customerId.value}/hotel/reservations/${reservationId}`
+      `http://15.165.109.152:8080/api/v1/customers/${customerId.value}/hotel/reservations/${reservationId}`
     );
     console.log("Fetched reservation details:", response.data); // 디버깅 로그
     if (response.data) {

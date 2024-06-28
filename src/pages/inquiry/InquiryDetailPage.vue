@@ -230,7 +230,7 @@ const isActionEditing = ref(false);
 const fetchInquiryDetail = async () => {
   try {
     const response = await axios.get(
-      `https://d14sl6ndoksytf.cloudfront.net/api/v1/inquiries/${inquiryId}`
+      `http://15.165.109.152:8080/api/v1/inquiries/${inquiryId}`
     );
     console.log("문의 상세 정보:", response.data.data); // 로그 추가
     inquiryDetail.value = response.data.data;

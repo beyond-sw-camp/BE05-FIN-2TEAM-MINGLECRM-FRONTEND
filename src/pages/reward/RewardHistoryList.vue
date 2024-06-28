@@ -116,7 +116,7 @@ const toDate = (beforeDate) => {
 const fetchRewards = async () => {
   try {
     const response = await axios.get(
-      "https://d14sl6ndoksytf.cloudfront.net/api/v1/rewards/histories"
+      "http://15.165.109.152:8080/api/v1/rewards/histories"
     );
     rewards.value = response.data.data;
     errorMessage.value = "";

@@ -113,14 +113,12 @@ const columns = ref([
 const fetchRewards = async () => {
   try {
     const response = await axios.get(
-      `https://d14sl6ndoksytf.cloudfront.net/api/events/${
-        pagination.value.page - 1
-      }`
+      `http://15.165.109.152:8080/api/events/${pagination.value.page - 1}`
     );
     events.value = response.data.data;
 
     const pagesNumberResponse = await axios.get(
-      "https://d14sl6ndoksytf.cloudfront.net/api/event/pagesnumber"
+      "http://15.165.109.152:8080/api/event/pagesnumber"
     );
     pagesNumber.value = Math.ceil(
       pagesNumberResponse.data.data / pagination.value.rowsPerPage

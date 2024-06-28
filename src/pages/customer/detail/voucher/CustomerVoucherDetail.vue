@@ -70,7 +70,7 @@ const voucherDetails = ref({});
 const fetchVoucherDetail = async (customerId, voucherId) => {
   try {
     const response = await axios.get(
-      `https://d14sl6ndoksytf.cloudfront.net/api/v1/vouchers/histories/${voucherId}`
+      `http://15.165.109.152:8080/api/v1/vouchers/histories/${voucherId}`
     );
     voucherDetails.value = response.data.data;
   } catch (error) {

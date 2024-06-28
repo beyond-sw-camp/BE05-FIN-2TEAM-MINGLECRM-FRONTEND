@@ -210,7 +210,7 @@ const toTenWords = (beforeWord) => {
 const fetchVouchers = async () => {
   try {
     const response = await axios.get(
-      `https://d14sl6ndoksytf.cloudfront.net/api/v1/vouchers/sended-marketer`
+      `http://15.165.109.152:8080/api/v1/vouchers/sended-marketer`
     );
     vouchers.value = response.data.data;
     errorMessage.value = "";
@@ -247,7 +247,7 @@ const searchVouchers = async () => {
     };
 
     const response = await axios.post(
-      "https://d14sl6ndoksytf.cloudfront.net/api/v1/vouchers/search",
+      "http://15.165.109.152:8080/api/v1/vouchers/search",
       data
     );
     vouchers.value = response.data.data;

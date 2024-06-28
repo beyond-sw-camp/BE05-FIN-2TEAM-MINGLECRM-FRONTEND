@@ -200,7 +200,7 @@ const getDiningReviews = async () => {
     console.log(searchCondition.value);
 
     const response = await axios.post(
-      `https://d14sl6ndoksytf.cloudfront.net/api/dining/reviews/${
+      `http://15.165.109.152:8080/api/dining/reviews/${
         pagination.value.page - 1
       }`,
       searchCondition.value
@@ -213,7 +213,7 @@ const getDiningReviews = async () => {
 
 const getDiningReviewMetaData = async () => {
   const response = await axios.get(
-    "https://d14sl6ndoksytf.cloudfront.net/api/dining/review/meta"
+    "http://15.165.109.152:8080/api/dining/review/meta"
   );
 
   pagination.value.pagesNumber = response.data.data.pagesNumber;
