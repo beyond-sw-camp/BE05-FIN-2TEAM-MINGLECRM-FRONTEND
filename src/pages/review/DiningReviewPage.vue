@@ -200,7 +200,7 @@ const getDiningReviews = async () => {
     console.log(searchCondition.value);
 
     const response = await axios.post(
-      `http://15.165.109.152:8080/api/dining/reviews/${
+      `https://15.165.109.152:8080/api/dining/reviews/${
         pagination.value.page - 1
       }`,
       searchCondition.value
@@ -213,7 +213,7 @@ const getDiningReviews = async () => {
 
 const getDiningReviewMetaData = async () => {
   const response = await axios.get(
-    "http://15.165.109.152:8080/api/dining/review/meta"
+    "https://15.165.109.152:8080/api/dining/review/meta"
   );
 
   pagination.value.pagesNumber = response.data.data.pagesNumber;

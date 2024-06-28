@@ -260,7 +260,7 @@ const updateColumns = (selected) => {
 const fetchVouchers = async () => {
   try {
     const response = await axios.get(
-      `http://15.165.109.152:8080/api/v1/vouchers/${props.selected}`
+      `https://15.165.109.152:8080/api/v1/vouchers/${props.selected}`
     );
     vouchers.value = response.data.data;
     console.log(vouchers.value);
@@ -297,7 +297,7 @@ const cancelVoucher = async (voucherId) => {
   }).onOk(async () => {
     try {
       await axios.post(
-        `http://15.165.109.152:8080/api/v1/vouchers/cancel/${voucherId}`
+        `https://15.165.109.152:8080/api/v1/vouchers/cancel/${voucherId}`
       );
       Notify.create({
         type: "positive",

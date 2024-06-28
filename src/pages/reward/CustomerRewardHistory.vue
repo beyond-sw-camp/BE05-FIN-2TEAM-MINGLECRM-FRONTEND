@@ -97,7 +97,7 @@ const columns = ref([
 const fetchRewardHistories = async (customerId) => {
   try {
     const response = await axios.get(
-      `http://15.165.109.152:8080/api/v1/rewards/history/${customerId}`
+      `https://15.165.109.152:8080/api/v1/rewards/history/${customerId}`
     );
     console.log(customerId);
     console.log(response);

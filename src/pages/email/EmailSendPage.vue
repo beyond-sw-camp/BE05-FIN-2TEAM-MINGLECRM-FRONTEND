@@ -59,7 +59,7 @@ const GroupOptions = ref(["전체", "VIP", "신규 회원", "MINGLE 팀원"]);
 const sendPersonalEmail = async () => {
   try {
     const response = await axios.post(
-      "http://15.165.109.152:8080/api/email/personal",
+      "https://15.165.109.152:8080/api/email/personal",
       {
         toEmail: toEmails.value,
         title: title.value,

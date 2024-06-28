@@ -44,7 +44,7 @@ const submitEdit = async () => {
   loading.value = true;
   try {
     const response = await axios.post(
-      `http://15.165.109.152:8080/api/v1/inquiries/reply/${props.inquiryReplyId}`,
+      `https://15.165.109.152:8080/api/v1/inquiries/reply/${props.inquiryReplyId}`,
       { updatedReply: updatedReply.value.content },
       {
         headers: {

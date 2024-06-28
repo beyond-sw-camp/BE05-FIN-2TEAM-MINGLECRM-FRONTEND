@@ -106,14 +106,14 @@ const fetchEmailLogs = async (eventId) => {
     console.log("page : ", pagination.value.page);
 
     const response = await axios.get(
-      `http://15.165.109.152:8080/api/emaillog/${eventId}/${
+      `https://15.165.109.152:8080/api/emaillog/${eventId}/${
         pagination.value.page - 1
       }`
     );
     emailLogs.value = response.data.data;
 
     const pagesNumberResponse = await axios.get(
-      `http://15.165.109.152:8080/api/emaillog/pagesnumber/${eventId}`
+      `https://15.165.109.152:8080/api/emaillog/pagesnumber/${eventId}`
     );
 
     pagesNumber.value = Math.ceil(
