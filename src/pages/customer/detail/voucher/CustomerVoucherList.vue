@@ -90,7 +90,7 @@ let fuse; // fuse.js 인스턴스
 const fetchVouchers = async () => {
   try {
     const response = await axios.get(
-      `https://15.165.109.152:8080/api/v1/vouchers/customer/${customerId}`
+      `https://mingle-crm.com/api/v1/vouchers/customer/${customerId}`
     );
     vouchers.value = response.data.data.map((voucher) => ({
       voucherId: voucher.voucherId,

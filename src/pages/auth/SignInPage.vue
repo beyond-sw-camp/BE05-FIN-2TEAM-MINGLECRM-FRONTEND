@@ -66,7 +66,7 @@ const router = useRouter();
 const signIn = async () => {
   try {
     const response = await axios.post(
-      "https://15.165.109.152:8080/api/v1/auth/signintest",
+      "https://mingle-crm.com/api/v1/auth/signintest",
       {
         email: email.value,
         password: password.value,

@@ -6,7 +6,7 @@ axios.defaults.withCredentials = true;
 
 // Create an axios instance test
 const api = axios.create({
-  baseURL: "https://15.165.109.152:8080",
+  baseURL: "https://mingle-crm.com",
   withCredentials: true,
 });
 

@@ -321,7 +321,7 @@ const fetchVouchers = async () => {
 
   try {
     const response = await axios.get(
-      `https://15.165.109.152:8080/api/v1/vouchers/${props.selected}`
+      `https://mingle-crm.com/api/v1/vouchers/${props.selected}`
     );
     vouchers.value = response.data.data;
     errorMessage.value = "";
@@ -362,7 +362,7 @@ const searchVouchers = async () => {
     // };
 
     const response = await axios.post(
-      "https://15.165.109.152:8080/api/v1/vouchers/search",
+      "https://mingle-crm.com/api/v1/vouchers/search",
       data
     );
     vouchers.value = response.data.data;
