@@ -93,7 +93,7 @@ const updateAction = async () => {
     console.log("request 전송 확인: ", JSON.stringify(payload));
 
     const response = await axios.post(
-      `http://localhost:8080/api/v1/inquiries/action/${props.inquiryActionId}`,
+      `https://d14sl6ndoksytf.cloudfront.net/api/v1/inquiries/action/${props.inquiryActionId}`,
       payload,
       {
         headers: {

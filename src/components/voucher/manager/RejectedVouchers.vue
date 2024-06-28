@@ -243,7 +243,7 @@ const toTenWords = (beforeWord) => {
 const fetchVouchers = async () => {
   try {
     const response = await axios.get(
-      `http://localhost:8080/api/v1/vouchers/rejected`
+      `https://d14sl6ndoksytf.cloudfront.net/api/v1/vouchers/rejected`
     );
     vouchers.value = response.data.data;
     errorMessage.value = "";
@@ -279,7 +279,7 @@ const searchVouchers = async () => {
       status: ["REJECTED"],
     };
     const response = await axios.post(
-      "http://localhost:8080/api/v1/vouchers/search",
+      "https://d14sl6ndoksytf.cloudfront.net/api/v1/vouchers/search",
       data
     );
     vouchers.value = response.data.data;

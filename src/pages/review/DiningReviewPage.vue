@@ -200,7 +200,9 @@ const getDiningReviews = async () => {
     console.log(searchCondition.value);
 
     const response = await axios.post(
-      `http://localhost:8080/api/dining/reviews/${pagination.value.page - 1}`,
+      `https://d14sl6ndoksytf.cloudfront.net/api/dining/reviews/${
+        pagination.value.page - 1
+      }`,
       searchCondition.value
     );
     reviews.value = response.data.data;
@@ -211,7 +213,7 @@ const getDiningReviews = async () => {
 
 const getDiningReviewMetaData = async () => {
   const response = await axios.get(
-    "http://localhost:8080/api/dining/review/meta"
+    "https://d14sl6ndoksytf.cloudfront.net/api/dining/review/meta"
   );
 
   pagination.value.pagesNumber = response.data.data.pagesNumber;

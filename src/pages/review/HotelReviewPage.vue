@@ -219,7 +219,9 @@ const getHotelReviews = async () => {
     console.log(searchCondition.value);
 
     const response = await axios.post(
-      `http://localhost:8080/api/hotel/reviews/${pagination.value.page - 1}`,
+      `https://d14sl6ndoksytf.cloudfront.net/api/hotel/reviews/${
+        pagination.value.page - 1
+      }`,
       searchCondition.value,
       { withCredentials: true }
     );
@@ -232,7 +234,7 @@ const getHotelReviews = async () => {
 
 const getHotelReviewMetaData = async () => {
   const response = await axios.get(
-    "http://localhost:8080/api/hotel/review/meta"
+    "https://d14sl6ndoksytf.cloudfront.net/api/hotel/review/meta"
   );
 
   pagination.value.pagesNumber = response.data.data.pagesNumber;

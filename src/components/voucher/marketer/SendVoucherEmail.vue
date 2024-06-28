@@ -53,7 +53,7 @@ const GroupOptions = ref(["전체", "VIP", "신규 회원", "MINGLE 팀원"]);
 const sendPersonalEmail = async () => {
   try {
     const response = await axios.post(
-      "http://localhost:8080/api/email/personal",
+      "https://d14sl6ndoksytf.cloudfront.net/api/email/personal",
       {
         toEmail: toEmails.value,
         title: title.value,
@@ -64,7 +64,7 @@ const sendPersonalEmail = async () => {
     window.alert("이메일이 발송되었습니다!");
 
     const sendResponse = await axios.post(
-      `http://localhost:8080/api/v1/vouchers/send/${props.voucherId}`
+      `https://d14sl6ndoksytf.cloudfront.net/api/v1/vouchers/send/${props.voucherId}`
     );
 
     console.log("요청 성공:", sendResponse);
