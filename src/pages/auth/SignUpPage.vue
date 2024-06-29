@@ -105,7 +105,7 @@ const signUp = async () => {
     console.log(request.value);
 
     const response = await axios.post(
-      "https://mingle-crm.com/api/v1/auth/signup",
+      "https://httpstest.mingle-crm.com/api/v1/auth/signup",
       request.value
     );
 

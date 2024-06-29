@@ -282,7 +282,7 @@ const fetchInquiries = async () => {
   error.value = null;
   try {
     const response = await axios.get(
-      "https://mingle-crm.com/api/v1/inquiries/unanswered",
+      "https://httpstest.mingle-crm.com/api/v1/inquiries/unanswered",
       {
         params: {
           page: pagination.value.page - 1,

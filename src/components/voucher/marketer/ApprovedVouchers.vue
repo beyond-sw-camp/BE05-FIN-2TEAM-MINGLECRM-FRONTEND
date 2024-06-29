@@ -251,7 +251,7 @@ const toTenWords = (beforeWord) => {
 const fetchVouchers = async () => {
   try {
     const response = await axios.get(
-      `https://mingle-crm.com/api/v1/vouchers/approved-marketer`
+      `https://httpstest.mingle-crm.com/api/v1/vouchers/approved-marketer`
     );
     vouchers.value = response.data.data;
     errorMessage.value = "";
@@ -288,7 +288,7 @@ const searchVouchers = async () => {
     };
 
     const response = await axios.post(
-      "https://mingle-crm.com/api/v1/vouchers/search",
+      "https://httpstest.mingle-crm.com/api/v1/vouchers/search",
       data
     );
     vouchers.value = response.data.data;
@@ -312,7 +312,7 @@ const cancelVoucher = async (voucherId) => {
   }).onOk(async () => {
     try {
       await axios.post(
-        `https://mingle-crm.com/api/v1/vouchers/cancel/${voucherId}`
+        `https://httpstest.mingle-crm.com/api/v1/vouchers/cancel/${voucherId}`
       );
       Notify.create({
         type: "positive",

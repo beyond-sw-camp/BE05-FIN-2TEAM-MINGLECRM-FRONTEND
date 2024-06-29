@@ -133,7 +133,7 @@ const toDate = (beforeDate) => {
 const fetchVouchers = async () => {
   try {
     const response = await axios.get(
-      "https://mingle-crm.com/api/v1/vouchers/requested"
+      "https://httpstest.mingle-crm.com/api/v1/vouchers/requested"
     );
     vouchers.value = response.data.data;
     console.log(vouchers.value);
@@ -156,7 +156,7 @@ const approveVoucher = async (voucherId) => {
   }).onOk(async () => {
     try {
       await axios.post(
-        `https://mingle-crm.com/api/v1/vouchers/approval/${voucherId}`
+        `https://httpstest.mingle-crm.com/api/v1/vouchers/approval/${voucherId}`
       );
       Notify.create({
         type: "positive",
@@ -187,7 +187,7 @@ const rejectVoucher = async (voucherId) => {
   }).onOk(async (reason) => {
     try {
       await axios.post(
-        `https://mingle-crm.com/api/v1/vouchers/rejection/${voucherId}`,
+        `https://httpstest.mingle-crm.com/api/v1/vouchers/rejection/${voucherId}`,
         { reason }
       );
       Notify.create({

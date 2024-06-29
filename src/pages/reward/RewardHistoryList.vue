@@ -116,7 +116,7 @@ const toDate = (beforeDate) => {
 const fetchRewards = async () => {
   try {
     const response = await axios.get(
-      "https://mingle-crm.com/api/v1/rewards/histories"
+      "https://httpstest.mingle-crm.com/api/v1/rewards/histories"
     );
     rewards.value = response.data.data;
     errorMessage.value = "";

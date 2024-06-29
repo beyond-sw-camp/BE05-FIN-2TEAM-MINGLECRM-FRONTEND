@@ -63,7 +63,7 @@ const voucherDetails = ref({});
 const fetchVoucherDetail = async (customerId, voucherId) => {
   try {
     const response = await axios.get(
-      `https://mingle-crm.com/api/v1/vouchers/histories/${voucherId}`
+      `https://httpstest.mingle-crm.com/api/v1/vouchers/histories/${voucherId}`
     );
     voucherDetails.value = response.data.data;
   } catch (error) {

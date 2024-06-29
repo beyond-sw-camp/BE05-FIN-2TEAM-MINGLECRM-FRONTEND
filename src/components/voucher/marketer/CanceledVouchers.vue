@@ -203,7 +203,7 @@ const toTenWords = (beforeWord) => {
 const fetchVouchers = async () => {
   try {
     const response = await axios.get(
-      `https://mingle-crm.com/api/v1/vouchers/canceled-marketer`
+      `https://httpstest.mingle-crm.com/api/v1/vouchers/canceled-marketer`
     );
     vouchers.value = response.data.data;
     errorMessage.value = "";
@@ -240,7 +240,7 @@ const searchVouchers = async () => {
     };
 
     const response = await axios.post(
-      "https://mingle-crm.com/api/v1/vouchers/search",
+      "https://httpstest.mingle-crm.com/api/v1/vouchers/search",
       data
     );
     vouchers.value = response.data.data;

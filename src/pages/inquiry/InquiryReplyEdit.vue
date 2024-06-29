@@ -44,7 +44,7 @@ const submitEdit = async () => {
   loading.value = true;
   try {
     const response = await axios.post(
-      `https://mingle-crm.com/api/v1/inquiries/reply/${props.inquiryReplyId}`,
+      `https://httpstest.mingle-crm.com/api/v1/inquiries/reply/${props.inquiryReplyId}`,
       { updatedReply: updatedReply.value.content },
       {
         headers: {

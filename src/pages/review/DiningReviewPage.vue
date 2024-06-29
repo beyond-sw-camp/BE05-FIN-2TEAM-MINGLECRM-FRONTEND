@@ -200,7 +200,9 @@ const getDiningReviews = async () => {
     console.log(searchCondition.value);
 
     const response = await axios.post(
-      `https://mingle-crm.com/api/dining/reviews/${pagination.value.page - 1}`,
+      `https://httpstest.mingle-crm.com/api/dining/reviews/${
+        pagination.value.page - 1
+      }`,
       searchCondition.value
     );
     reviews.value = response.data.data;
@@ -211,7 +213,7 @@ const getDiningReviews = async () => {
 
 const getDiningReviewMetaData = async () => {
   const response = await axios.get(
-    "https://mingle-crm.com/api/dining/review/meta"
+    "https://httpstest.mingle-crm.com/api/dining/review/meta"
   );
 
   pagination.value.pagesNumber = response.data.data.pagesNumber;
