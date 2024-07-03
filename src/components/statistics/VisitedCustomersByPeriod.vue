@@ -102,20 +102,6 @@ const columns = [
     field: "phone",
     sortable: true,
   },
-  // {
-  //   name: "employeeName",
-  //   label: "Employee Name",
-  //   align: "left",
-  //   field: "employeeName",
-  //   sortable: true,
-  // },
-  // {
-  //   name: "createdDate",
-  //   label: "Created Date",
-  //   align: "left",
-  //   field: "createdDate",
-  //   sortable: true,
-  // },
   {
     name: "grade",
     label: "Grade",
@@ -123,8 +109,6 @@ const columns = [
     field: "grade",
     sortable: true,
   },
-  // { name: "address", label: "Address", align: "left", field: "address" },
-  // { name: "memo", label: "Memo", align: "left", field: "memo", sortable: true },
   {
     name: "gender",
     label: "Gender",
@@ -195,7 +179,7 @@ const calculateDailyVisitCounts = () => {
   customerVisits.value.forEach((visit) => {
     const start = new Date(visit.visitStartDate);
     const end = new Date(visit.visitEndDate);
-    for (let d = start; d <= end; d.setDate(d.getDate() + 1)) {
+    for (let d = new Date(start); d <= end; d.setDate(d.getDate() + 1)) {
       const dateString = d.toISOString().split("T")[0];
       if (!visitCountMap[dateString]) {
         visitCountMap[dateString] = 0;
@@ -204,11 +188,19 @@ const calculateDailyVisitCounts = () => {
     }
   });
 
+  // 범위 내의 날짜만 포함
+  const startRange = new Date(startDate.value);
+  const endRange = new Date(endDate.value);
+
   dailyVisitCounts.value = Object.entries(visitCountMap)
     .map(([date, count]) => ({
       date,
       count,
     }))
+    .filter(({ date }) => {
+      const currentDate = new Date(date);
+      return currentDate >= startRange && currentDate <= endRange;
+    })
     .sort((a, b) => new Date(a.date) - new Date(b.date));
 };
 
@@ -226,9 +218,6 @@ const chartData = ref({
 const chartOptions = ref({
   responsive: true,
   plugins: {
-    // legend: {
-    //   position: "top",
-    // },
     title: {
       display: true,
       text: "일별 방문 통계",

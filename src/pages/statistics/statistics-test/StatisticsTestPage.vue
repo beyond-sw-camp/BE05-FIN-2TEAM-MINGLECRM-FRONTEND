@@ -28,10 +28,15 @@
                 <div class="row text-grey-7 full-width justify-center">
                   +37% 상승
                 </div>
-                <div
+                <!-- <div
                   class="row text-weight-bold text-h4 full-width justify-center"
                 >
                   {{ yesterdayNum }}
+                </div> -->
+                <div
+                  class="row text-weight-bold text-h4 full-width justify-center"
+                >
+                  246
                 </div>
               </q-card>
             </div>
