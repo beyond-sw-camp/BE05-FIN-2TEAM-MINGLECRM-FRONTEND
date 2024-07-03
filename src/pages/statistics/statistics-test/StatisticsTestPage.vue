@@ -60,10 +60,15 @@
                 <div class="row text-grey-7 full-width justify-center">
                   +22% 상승
                 </div>
-                <div
+                <!-- <div
                   class="row text-weight-bold text-h4 full-width justify-center"
                 >
                   {{ revisitRate }} %
+                </div> -->
+                <div
+                  class="row text-weight-bold text-h4 full-width justify-center"
+                >
+                  43 %
                 </div>
               </q-card>
             </div>
