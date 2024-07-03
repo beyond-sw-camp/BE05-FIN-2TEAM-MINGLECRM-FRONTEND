@@ -41,7 +41,7 @@ export default boot(({ app }) => {
           }
         } catch (error) {
           console.log("토큰 갱신 실패 -> 로그아웃 상태");
-          window.location.href = "/signin";
+          window.location.href = "/#/signin";
           return Promise.reject(error);
         }
       } else {
